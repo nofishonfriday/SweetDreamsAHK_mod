@@ -25,12 +25,22 @@ original version:
  - starts fading from current volume and restores to original volume (not 100% as in original version)
  - screen is turned off (periodically every minute if idle) 
  
+ v1.0.1
+ # renamed .exe to SeetDreamsAHK_mod (no version nr.)
+ # version nr. now displayed in title
+ # clicking Cancel = exit
+ 
  */
  
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+NAME = SweetDreamsAHK_
+VERSION = 1.0
+BOXTITLE = %NAME%%VERSION%
+
 
 ; read previous values from .ini file
 IniRead readInitialTimeMin, SweetDreamsAHK.ini, variables, storedInitialTimeMin, 25 ; 25 = default value when reading failed
@@ -46,10 +56,15 @@ MsgBox, The value is %readReduceTimeMin%.
 }
 
 
-InputBox, initalTimeMin,, Time to wait before decreasing volume (minutes):, , , , , , , , %readInitialTimeMin%
-InputBox, reduceTimeMin,, Time to decrease volume over (minutes):, , , , , , , , %readReduceTimeMin%
+InputBox, initalTimeMin, %BOXTITLE%, Time to wait before decreasing volume (minutes):, , , , , , , , %readInitialTimeMin%
+if ErrorLevel
+ ExitApp
 
-MsgBox, 4,, Shut down afterwards?
+InputBox, reduceTimeMin, %BOXTITLE%, Time to decrease volume over (minutes):, , , , , , , , %readReduceTimeMin%
+if ErrorLevel
+ ExitApp
+
+MsgBox, 4, %BOXTITLE%, Shut down afterwards?
 IfMsgBox Yes 
 {
    shutdown := "true"
