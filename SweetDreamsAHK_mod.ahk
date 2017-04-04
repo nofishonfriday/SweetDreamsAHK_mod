@@ -37,8 +37,8 @@ original version:
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-NAME = SweetDreamsAHK_
-VERSION = 1.0
+NAME = SweetDreamsAHK_mod
+VERSION = (1.0.1)
 BOXTITLE = %NAME%%VERSION%
 
 
